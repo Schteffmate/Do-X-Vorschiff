@@ -4,89 +4,80 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101820">
-<title>Do-X Vorschiff AR</title>
+<title>Do-X Vorschiff</title>
 <style>
-* {
-box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
-margin: 0;
-min-height: 100vh;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 24px;
-background: #101820;
-color: #ffffff;
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-text-align: center;
+margin: 0; min-height: 100vh; padding: 24px;
+display: flex; align-items: center; justify-content: center;
+font-family: Arial, sans-serif; background: #101820; color: #fff;
 }
-
-main {
-width: 100%;
-max-width: 460px;
-}
-
-.symbol {
-font-size: 56px;
-margin-bottom: 12px;
-}
-
-h1 {
-font-size: 30px;
-margin: 0 0 12px;
-}
-
-p {
-color: #c6d0d8;
-line-height: 1.6;
-}
-
+main { width: 100%; max-width: 520px; text-align: center; }
+h1 { margin-bottom: 12px; font-size: clamp(28px, 7vw, 42px); }
+p { line-height: 1.6; color: #d4dbe2; }
 .ar-button {
-display: block;
-margin-top: 26px;
-padding: 16px 20px;
-border-radius: 12px;
-background: #e4b65c;
-color: #101820;
-font-weight: 700;
-text-decoration: none;
+display: block; width: 100%; margin: 24px 0 12px; padding: 16px 20px;
+border: 0; border-radius: 12px; background: #f0c66e; color: #101820;
+font-size: 17px; font-weight: bold; text-decoration: none; cursor: pointer;
 }
-
-.ar-button:focus-visible {
-outline: 3px solid #ffffff;
-outline-offset: 4px;
-}
-
-.note {
-font-size: 13px;
-margin-top: 20px;
-}
+.note { margin-top: 20px; font-size: 14px; color: #aebbc7; }
+[hidden] { display: none !important; }
 </style>
 </head>
 <body>
 <main>
-<div class="symbol" aria-hidden="true">✈</div>
-<h1>Do-X Vorschiff AR</h1>
-
+<h1>Do-X Vorschiff</h1>
 <p>
-Tippe auf "In AR ansehen". Wenn das Objekt erscheint, tippe auf das Würfel-Symbol oben rechts.
+Do-X Freundeskreis - https://www.do-x-vision.de/
 </p>
 
-<a
-class="ar-button"
-rel="ar"
-href="./models/model.usdz"
-aria-label="LZ 129 Hindenburg in Augmented Reality ansehen"
->
-In AR ansehen
+<!-- iPhone / iPad: bestehende Apple-AR-Quick-Look-Version -->
+<section id="ios-option" hidden>
+<a class="ar-button" rel="ar" href="./models/model.usdz">
+
+
+<!-- Andere Geräte: beide Möglichkeiten anbieten -->
+<section id="other-option" hidden>
+<p>Wähle die passende AR-Version für dein Gerät:</p>
+<a class="ar-button" rel="ar" href="./models/model.usdz">
+iPhone / iPad – AR starten
 </a>
+<a class="ar-button" href="./android.html">
+Android – AR starten
+</a>
+</section>
 
-<p class="note">
-Bewege dein Handy nach dem Start langsam,
-um deine Umgebung zu erfassen. Skaliere das Objekt mit zwei Fingern auf dem Display.
-</p>
+<noscript>
+<p>Bitte aktiviere JavaScript oder verwende einen der direkten Links:</p>
+<a class="ar-button" rel="ar" href="./models/model.usdz">
+iPhone / iPad – AR starten
+</a>
+<a class="ar-button" href="./android.html">Android – AR starten</a>
+</noscript>
 </main>
+
+<script>
+(() => {
+const ua = navigator.userAgent || "";
+
+// iPadOS kann sich als Mac ausgeben.
+const isIPadOS =
+navigator.platform === "MacIntel" &&
+navigator.maxTouchPoints > 1;
+
+const isIOS =
+/iPhone|iPad|iPod/i.test(ua) || isIPadOS;
+
+const isAndroid = /Android/i.test(ua);
+
+if (isIOS) {
+document.getElementById("ios-option").hidden = false;
+} else if (isAndroid) {
+document.getElementById("android-option").hidden = false;
+} else {
+document.getElementById("other-option").hidden = false;
+}
+})();
+</script>
 </body>
 </html>
