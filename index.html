@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101820">
-<title>Do-X Vorschiff</title>
+<title>Do-X Vorschiff in AR</title>
 <style>
 * { box-sizing: border-box; }
 body {
@@ -26,15 +26,32 @@ font-size: 17px; font-weight: bold; text-decoration: none; cursor: pointer;
 </head>
 <body>
 <main>
-<h1>Do-X Vorschiff</h1>
+<h1>Do-X Vorschiff in AR</h1>
 <p>
-Do-X Freundeskreis - https://www.do-x-vision.de/
+Entdecke das historische Luftschiff in Augmented Reality
+und platziere das 3D-Modell direkt in deiner Umgebung.
 </p>
 
 <!-- iPhone / iPad: bestehende Apple-AR-Quick-Look-Version -->
 <section id="ios-option" hidden>
 <a class="ar-button" rel="ar" href="./models/model.usdz">
+Do-X Vorschiff in AR ansehen
+</a>
+<p class="note">
+Öffne die AR-Ansicht mit einem kompatiblen iPhone oder iPad.
+</p>
+</section>
 
+<!-- Android: bestehende WebXR-Version -->
+<section id="android-option" hidden>
+<a class="ar-button" href="./android.html">
+Do-X Vorschiff in AR ansehen
+</a>
+<p class="note">
+Öffne diese Seite in Google Chrome auf einem
+kompatiblen Android-Gerät.
+</p>
+</section>
 
 <!-- Andere Geräte: beide Möglichkeiten anbieten -->
 <section id="other-option" hidden>
