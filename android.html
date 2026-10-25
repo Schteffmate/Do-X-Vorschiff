@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Do X Vorschiff – Android AR</title>
 
+  <script type="module"
+    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111827;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      padding: 20px 10px 0;
+    }
+
+    p {
+      padding: 0 15px;
+      line-height: 1.5;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 70vh;
+      min-height: 350px;
+      background: #1f2937;
+    }
+
+    #ar-button {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 25px;
+      border: none;
+      border-radius: 30px;
+      background: white;
+      color: #111827;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #status {
+      font-size: 14px;
+      color: #d1d5db;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Do X Vorschiff – Augmented Reality</h1>
+  <p>Betrachte das Modell und platziere es in deiner realen Umgebung.</p>
+
+  <model-viewer
+    id="model"
+    src="https://schteffmate.github.io/Do-X-Vorschiff/models/model.glb"
+    alt="3D-Modell des Do X Vorschiffs"
+    camera-controls
+    ar
+    ar-modes="scene-viewer"
+    ar-placement="floor"
+    ar-scale="auto"
+    shadow-intensity="1"
+    exposure="1">
+
+    <button slot="ar-button" id="ar-button">
+      In AR ansehen
+    </button>
+
+  </model-viewer>
+
+  <p id="status">Das 3D-Modell wird geladen …</p>
+
+  <script>
+    const model = document.getElementById("model");
+    const status = document.getElementById("status");
+
+    model.addEventListener("load", () => {
+      status.textContent =
+        "Modell geladen. Tippe auf „In AR ansehen“.";
+    });
+
+    model.addEventListener("error", () => {
+      status.textContent =
+        "Fehler beim Laden des Modells. Bitte prüfe den Dateipfad.";
+    });
+
+    if (!/Android/i.test(navigator.userAgent)) {
+      status.textContent =
+        "Diese AR-Anwendung ist ausschließlich für Android vorgesehen.";
+      document.getElementById("ar-button").hidden = true;
+    }
+  </script>
+
+</body>
+</html>
