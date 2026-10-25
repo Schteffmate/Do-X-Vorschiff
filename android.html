@@ -86,14 +86,12 @@ model.visible = false;
 model.scale.setScalar(1);
 scene.add(model);
 status.textContent = 'Modell geladen. Tippe auf „AR starten“.';
-},
-undefined,
-(error) => {
-console.error(error);
+  
+}, undefined, (error) => {
+console.error('GLB-Ladefehler:', error);
 status.textContent =
-'Modell konnte nicht geladen werden. Bitte models/model.glb und den Dateinamen prüfen.';
-}
-);
+'Ladefehler: ' + (error?.message || String(error));
+});
 
 const arButton = ARButton.createButton(renderer, {
 requiredFeatures: ['hit-test'],
